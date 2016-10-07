@@ -32,5 +32,5 @@ Some ideas for added functionality you might like to add (not all are simple, yo
 3: Add image filters.  So /alter/filername/* would create a new version of the picture with that filter  applied.  
 4: Allow users to comment on other users pictures. /Image/Comments/* would display the picture with the comments.
 
-This is not a limit to what you could do, use your imagination!
+This is not a limit to what you could do, use your imagination !
 
