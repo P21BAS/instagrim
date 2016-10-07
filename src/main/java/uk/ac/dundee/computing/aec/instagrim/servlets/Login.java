@@ -48,12 +48,19 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+//        String username=request.getParameter("username");
+//        String password=request.getParameter("password");
+        
+        String firstname=request.getParameter("firstname");
+        String lastname=request.getParameter("lastname"); 
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+        String email=request.getParameter("email");
+        String dateofbirth=request.getParameter("dateofbirth");
         
         User us=new User();
         us.setCluster(cluster);
-        boolean isValid=us.IsValidUser(username, password);
+        boolean isValid=us.IsValidUser(firstname, lastname,username, password,email,dateofbirth);
         HttpSession session=request.getSession();
         System.out.println("Session in servlet "+session);
         if (isValid){

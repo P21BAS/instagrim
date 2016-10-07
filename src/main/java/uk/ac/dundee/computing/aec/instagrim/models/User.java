@@ -27,7 +27,7 @@ public class User {
         
     }
     
-    public boolean RegisterUser(String username, String Password){
+    public boolean RegisterUser(String firstname, String lastname, String username, String Password,String dateofbirth, String email){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;
         try {
@@ -48,7 +48,7 @@ public class User {
         return true;
     }
     
-    public boolean IsValidUser(String username, String Password){
+    public boolean IsValidUser(String firstname, String lastname, String username, String Password,String dateofbirth, String email){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;
         try {
