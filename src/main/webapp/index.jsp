@@ -1,54 +1,51 @@
-<%-- 
-    Document   : index
-    Created on : Sep 28, 2014, 7:01:44 PM
-    Author     : Administrator
---%>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Instagrim</title>
+        <title>GrimInsta</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <header>
-            <h1>InstaGrim ! </h1>
-            <h2>Your world in Black and White</h2>
-        </header>
-        <nav>
-            <ul>
-
-               
-                <li><a href="upload.jsp">Upload</a></li>
-                    <%
-                        
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        if (lg != null) {
-                            String UserName = lg.getUsername();
-                            if (lg.getlogedin()) {
-                    %>
-
-                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                    <%}
-                            }else{
-                                %>
-                 <li><a href="register.jsp">Register</a></li>
-                <li><a href="login.jsp">Login</a></li>
+    <nav id="nav">
+        <ul class="container">
+            <li><a href="/Instagrim">Home</a></li>
+            <li><a href="upload.jsp">Upload</a></li>
                 <%
-                                        
-                            
-                    }%>
-            </ul>
-        </nav>
-        <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Andy C</li>
-            </ul>
-        </footer>
-    </body>
+                    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                    if (lg != null) {
+                        String UserName = lg.getUsername();
+                        if (lg.getlogedin()) {
+                %>
+            <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+            <li><a href="logout.jsp">Logout<a/></li>
+                <%}
+                } else {
+                %>
+            <li><a href="register.jsp">Register</a></li>
+            <li><a href="login.jsp">Login</a></li>
+                <%}%>
+        </ul>
+    </nav>
+    <div class="wrapper style1 first">
+        <article class="container" id="top">
+            <div class="row">
+                <div class="8u 12u(mobile)">
+                    <header>
+                        <h1>Welcome to <strong>GrimInsta</strong>.</h1>
+                    </header>
+                    <p>GrimInsta is an example web app using Cassandra as a back end.   The app allows picture uploads, creates a thumbnail and 
+                        a  B/W version of the picture, and a simple login.</p>
+                    <a href="register.jsp" class="button big scrolly">Sign Up</a>
+                </div>
+            </div>
+            <footer>
+                <ul id="copyright">
+                    <li class="footer">&COPY; Andy C & Brian S</li>
+                </ul>
+            </footer>
+        </article>
+    </div>
+</body>
 </html>

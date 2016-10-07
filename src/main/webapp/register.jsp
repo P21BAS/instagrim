@@ -13,33 +13,37 @@
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
-        <header>
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
-        </header>
-        <nav>
-            <ul>
-                
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
-            </ul>
+        <nav id="nav">
+            <li><a href="/Instagrim">Home</a></li>
+            <li><a href="upload.jsp">Upload</a></li>
+            <li><a href="register.jsp">Register</a></li>
+            <li><a href="login.jsp">Login</a></li>
+            <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
         </nav>
-       
-        <article>
-            <h3>Register as user</h3>
-            <form method="POST"  action="Register">
-                <ul>
-                    <li>User Name <input type="text" name="username"></li>
-                    <li>Password <input type="password" name="password"></li>
-                </ul>
-                <br/>
-                <input type="submit" value="Regidter"> 
-            </form>
-
-        </article>
-        <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
-        </footer>
+        <div class="wrapper style1 first">
+            <article class="container" id="top">
+                <header>
+                    <h1>GrimInsta!</h1>
+                    <h2>Your world in Black and White</h2>
+                </header>
+                <h3>Register as user</h3>
+                <form method="POST"  action="Register">
+                    <ul>
+                        <li>First Name <input type="text" name="firstname"></li>
+                        <li>Last Name <input type="text" name="lastname"></li>
+                        <li>Date Of Birth <input type="text" name="dateofbirth"></li>
+                        <li>Email <input type="email" name="email"></li>
+                        <li>User Name <input type="text" name="username"></li>
+                        <li>Password <input type="password" name="password  "></li>
+                    </ul>
+                    <input type="submit" value="Register"> 
+                </form>
+                <footer>
+                    <ul id="copyright">
+                        <li class="footer"><a href="/Instagrim">Home</a></li>
+                    </ul>
+                </footer>
+            </article>
+        </div>
     </body>
 </html>
