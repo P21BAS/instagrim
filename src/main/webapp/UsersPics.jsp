@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Instagrim</title>
+        <title>GrimInsta</title>
         <link rel="stylesheet" type="text/css" href="/Instagrim/Styles.css" />
     </head>
     <body>
@@ -21,9 +21,6 @@
                     <h1>InstaGrim ! </h1>
                     <h2>Your world in Black and White</h2>
                 </header>
-
-
-
                 <article>
                     <h1>Your Pics</h1>
                     <%
@@ -39,7 +36,7 @@
                             Pic p = (Pic) iterator.next();
 
                     %>
-                    <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
+                    <a class="image featured" href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
 
                             }
                         }

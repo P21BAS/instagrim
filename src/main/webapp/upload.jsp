@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>griminsta</title>
+        <title>grimInsta</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
