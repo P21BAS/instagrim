@@ -14,10 +14,12 @@
     </head>
     <body>
         <nav id="nav">
+            <li><a href="/Instagrim">Home</a></li>
             <li><a href="upload.jsp">Upload</a></li>
             <li><a href="register.jsp">Register</a></li>
             <li><a href="login.jsp">Login</a></li>
             <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+            
         </nav>
         <div class="wrapper style1 first">
             <article class="container" id="top">
