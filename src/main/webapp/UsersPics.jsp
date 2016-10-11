@@ -11,14 +11,17 @@
     <body>
         <nav id="nav">
             <ul>
+                <li class="nav"><a href="/Instagrim">Home</a></li>
                 <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
+                <li class="nav"><a href="/Instagrim/register.jsp">Register</a></li>
+                <li class="nav"><a href="/Instagrim/login.jsp">Login</a></li>
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
         </nav>
         <div class="wrapper style1 first">
             <article class="container" id="top">
                 <header>
-                    <h1>InstaGrim ! </h1>
+                    <h1>GrimInsta ! </h1>
                     <h2>Your world in Black and White</h2>
                 </header>
                 <article>
@@ -44,7 +47,6 @@
                 </article>
                 <footer>
                     <ul>
-                        <li class="footer"><a href="/Instagrim">Home</a></li>
                     </ul>
                 </footer>
             </article>

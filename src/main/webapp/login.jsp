@@ -15,9 +15,9 @@
     <body>
         <nav id="nav">
             <li><a href="/Instagrim">Home</a></li>
-            <li><a href="upload.jsp">Upload</a></li>
-            <li><a href="register.jsp">Register</a></li>
-            <li><a href="login.jsp">Login</a></li>
+            <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+            <li><a href="/Instagrim/register.jsp">Register</a></li>
+            <li><a href="/Instagrim/login.jsp">Login</a></li>
             <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
             
         </nav>
@@ -37,9 +37,9 @@
                     <input type="submit" value="Login"> 
                 </form>
                 <footer>
-                    <ul>
+                  <%--  <ul>
                         <li class="footer"><a href="/Instagrim">Home</a></li>
-                    </ul>
+                    </ul> --%>
                 </footer>
             </article>
         </div>

@@ -9,15 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Instagrim</title>
+        <title>GrimInsta</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
         <nav id="nav">
             <li><a href="/Instagrim">Home</a></li>
-            <li><a href="upload.jsp">Upload</a></li>
-            <li><a href="register.jsp">Register</a></li>
-            <li><a href="login.jsp">Login</a></li>
+            <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+            <li><a href="/Instagrim/register.jsp">Register</a></li>
+            <li><a href="/Instagrim/login.jsp">Login</a></li>
             <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
         </nav>
         <div class="wrapper style1 first">
@@ -40,7 +40,7 @@
                 </form>
                 <footer>
                     <ul id="copyright">
-                        <li class="footer"><a href="/Instagrim">Home</a></li>
+                       <%-- <li class="footer"><a href="/Instagrim">Home</a></li> --%>
                     </ul>
                 </footer>
             </article>
