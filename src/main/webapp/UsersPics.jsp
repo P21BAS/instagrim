@@ -46,8 +46,6 @@
                         %>
                 </article>
                 <footer>
-                    <ul>
-                    </ul>
                 </footer>
             </article>
         </div>
