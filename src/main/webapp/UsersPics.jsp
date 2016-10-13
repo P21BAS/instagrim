@@ -9,7 +9,29 @@
         <link rel="stylesheet" type="text/css" href="/Instagrim/Styles.css" />
     </head>
     <body>
-        <nav id="nav">
+         <nav id="nav">
+        <ul class="container">
+            <li><a href="/Instagrim">Home</a></li>
+            <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+                <%
+                    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                    if (lg != null) {
+                        String UserName = lg.getUsername();
+                        if (lg.getlogedin()) {
+                %>
+            <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+            <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+            <li><a href="/Instagrim/logout.jsp">Logout<a/></li>
+                <% }
+                } else {
+                %>
+            <li><a href="/Instagrim/register.jsp">Register</a></li>
+            <li><a href="/Instagrim/login.jsp">Login</a></li>
+            <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <%}%>
+        </ul>
+    </nav>
+      <%--  <nav id="nav">
             <ul>
                 <li class="nav"><a href="/Instagrim">Home</a></li>
                 <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
@@ -17,7 +39,7 @@
                 <li class="nav"><a href="/Instagrim/login.jsp">Login</a></li>
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
-        </nav>
+        </nav> --%>
         <div class="wrapper style1 first">
             <article class="container" id="top">
                 <header>

@@ -34,7 +34,7 @@
                         <li>Date Of Birth <input type="text" name="dateofbirth"></li>
                         <li>Email <input type="email" name="email"></li>
                         <li>User Name <input type="text" name="username"></li>
-                        <li>Password <input type="password" name="password  "></li>
+                        <li>Password <input type="password" name="password"></li>
                     </ul>
                     <input type="submit" value="Register"> 
                 </form>
