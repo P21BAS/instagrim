@@ -40,7 +40,18 @@
                     </header>
                     <p>GrimInsta is an example web app using Cassandra as a back end.   The app allows picture uploads, creates a thumbnail and 
                         a  B/W version of the picture, and a simple login.</p>
-                    <a href="register.jsp" class="button big scrolly">Sign Up</a>
+                      <%
+                    LoggedIn lgn = (LoggedIn) session.getAttribute("LoggedIn");
+                    if (lg != null) {
+                        String UserName = lg.getUsername();
+                        if (lg.getlogedin()) {
+                %>
+                    
+                        <% }
+                } else {
+                %>
+                <a href="register.jsp" class="button big scrolly">Sign Up</a>
+                <%}%>
                 </div>
             </div>
             <footer>
