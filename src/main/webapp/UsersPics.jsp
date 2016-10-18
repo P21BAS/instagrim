@@ -22,6 +22,7 @@
             <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
             <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
             <li><a href="/Instagrim/Logout">Logout</a></li>
+            <li><a href="/Instagrim/UserProfile.jsp">User Profile</a></li>
                 <% }
                 } else {
                 %>

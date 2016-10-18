@@ -10,8 +10,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Your Profile</title>
+        <link rel="stylesheet" type="text/css" href="/Instagrim/Styles.css" />
+   
     </head>
     <body>
        <nav id="nav">
