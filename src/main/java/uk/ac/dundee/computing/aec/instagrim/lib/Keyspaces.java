@@ -49,6 +49,7 @@ public final class Keyspaces {
                     + "      email text,\n"
 //                    + "      addresses  map<text, frozen <address>>\n"
                     + "      dateofbirth text, \n"
+                    + "      profilepic uuid, \n"
                     + "  );";
             Session session = c.connect();
             try {
