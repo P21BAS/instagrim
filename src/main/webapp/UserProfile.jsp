@@ -22,11 +22,12 @@
             <li><a href="/Instagrim/upload.jsp">Upload</a></li>
                 <%
                     LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                    ProfileStore ps = (ProfileStore) session.getAttribute("ProfileStore");
+                    ProfileStore ps = (ProfileStore) session.getAttribute("ProfilePic");
                     if (lg != null) {
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
                 %>
+            <li><a href="/Instagrim/UserProfile.jsp">User Profile</a></li>
             <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
             <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
             <li><a href="/Instagrim/Logout">Logout</a></li>
@@ -55,12 +56,7 @@
                     <h2>Your world in Black and White</h2>
                 </header>
                 <article>
-                    <h1>Your Pics</h1>
-                   
                     <a class="image featured" href="/Instagrim/Image/<%=ps.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=ps.getSUUID()%>"></a><br/>
-
-                       
-                       
                 </article>
                 <footer>
                 </footer>

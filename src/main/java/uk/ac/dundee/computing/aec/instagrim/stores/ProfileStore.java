@@ -18,8 +18,8 @@ public class ProfileStore {
     public void setUUID(java.util.UUID UUID){
         this.UUID =UUID;
     }
-    public String getSUUID(){
-        return UUID.toString();
+    public java.util.UUID getSUUID(){
+        return UUID;
     }
     
 }
