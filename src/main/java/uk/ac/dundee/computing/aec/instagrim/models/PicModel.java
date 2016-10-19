@@ -74,12 +74,15 @@ public class PicModel {
 
             PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
             PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
+            PreparedStatement psUpdateProfilePic = session.prepare("Update userprofiles set profilepic = ? where login = ?");
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
             BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
+            BoundStatement bsUpdateProfilePic = new BoundStatement (psUpdateProfilePic);
 
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));
+            session.execute(bsUpdateProfilePic.bind(picid, user));
             session.close();
 
         } catch (IOException ex) {

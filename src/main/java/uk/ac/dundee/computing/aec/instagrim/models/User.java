@@ -82,6 +82,31 @@ public class User {
        public void setCluster(Cluster cluster) {
         this.cluster = cluster;
     }
+       
+       public java.util.UUID UpdateProfilePic(String username){
+           
+        java.util.UUID picid=null;
+                
+             Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select profilepic from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+         
+        } else {
+            for (Row row : rs) {
+               
+                picid = row.getUUID("profilepic");
+               
+            }
+          
+       }
 
-    
+     return picid;
+
+       }
 }

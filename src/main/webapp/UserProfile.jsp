@@ -22,6 +22,7 @@
             <li><a href="/Instagrim/upload.jsp">Upload</a></li>
                 <%
                     LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                    ProfileStore ps = (ProfileStore) session.getAttribute("ProfileStore");
                     if (lg != null) {
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
@@ -55,24 +56,11 @@
                 </header>
                 <article>
                     <h1>Your Pics</h1>
-                    <%
-                        java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-                        if (lsPics == null) {
-                    %>
-                    <p>No Pictures found</p>
-                    <%
-                    } else {
-                        Iterator<Pic> iterator;
-                        iterator = lsPics.iterator();
-                        while (iterator.hasNext()) {
-                            Pic p = (Pic) iterator.next();
+                   
+                    <a class="image featured" href="/Instagrim/Image/<%=ps.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=ps.getSUUID()%>"></a><br/>
 
-                    %>
-                    <a class="image featured" href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
-
-                            }
-                        }
-                        %>
+                       
+                       
                 </article>
                 <footer>
                 </footer>
