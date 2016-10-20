@@ -64,9 +64,13 @@ public class Login extends HttpServlet {
             LoggedIn lg = new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
+            lg.setUserFName(us.UserFname(username));
+            lg.setUserLName(us.UserLname(username));
+            lg.setUserEmail(us.UserEmail(username));
             //request.setAttribute("LoggedIn", lg);
 
             session.setAttribute("LoggedIn", lg);
+//            session.setAttribute("firstname", lg);
             System.out.println("Session in servlet " + session);
             ProfileStore ps = new ProfileStore();
             ps.setUUID(us.UpdateProfilePic(username));

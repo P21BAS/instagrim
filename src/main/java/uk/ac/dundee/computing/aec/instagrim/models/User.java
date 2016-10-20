@@ -37,12 +37,12 @@ public class User {
             return false;
         }
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("insert into userprofiles (login,password, first_name, last_name, email, dateofbirth) Values(?,?,?,?,?,?)");
+        PreparedStatement ps = session.prepare("insert into userprofiles (login, password, first_name, last_name, dateofbirth, email) Values(?,?,?,?,?,?)");
        
         BoundStatement boundStatement = new BoundStatement(ps);
         session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
-                        username,EncodedPassword,firstname, lastname, email,dateofbirth));
+                        username,EncodedPassword,firstname, lastname, dateofbirth, email));
         //We are assuming this always works.  Also a transaction would be good here !
         
         return true;
@@ -109,4 +109,84 @@ public class User {
      return picid;
 
        }
+       
+       public String UserFname(String username){
+           
+        String fname="";
+                
+             Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select first_name from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No First Name Returned");
+         
+        } else {
+            for (Row row : rs) {
+               
+                fname = row.getString("first_name");
+               
+            }
+          
+       }
+
+    return fname;
+
+       }   
+       
+       public String UserLname(String username){
+           
+        String lname="";
+                
+             Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select last_name from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No First Name Returned");
+         
+        } else {
+            for (Row row : rs) {
+               
+                lname = row.getString("last_name");
+               
+            }
+          
+       }
+
+    return lname;
+
+       }   
+       public String UserEmail(String username){
+           
+        String emailid="";
+                
+             Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select email from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No First Name Returned");
+         
+        } else {
+            for (Row row : rs) {
+               
+                emailid = row.getString("email");
+               
+            }
+          
+       }
+
+    return emailid;
+
+       }   
 }

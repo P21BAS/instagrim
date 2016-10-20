@@ -23,6 +23,7 @@
                 <%
                     LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                     ProfileStore ps = (ProfileStore) session.getAttribute("ProfilePic");
+
                     if (lg != null) {
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
@@ -54,6 +55,8 @@
                 <header>
                     <h1>GrimInsta ! </h1>
                     <h2>Your world in Black and White</h2>
+                    <h3>Welcome <%=lg.getUserFName()%>  <%=lg.getUserLName()%></h3>
+                    <h4>Email:<%=lg.getUserEmail()%></h4>
                 </header>
                 <article>
                     <a class="image featured" href="/Instagrim/Image/<%=ps.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=ps.getSUUID()%>"></a><br/>
