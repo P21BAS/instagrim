@@ -73,8 +73,8 @@ public class Login extends HttpServlet {
 //            session.setAttribute("firstname", lg);
             System.out.println("Session in servlet " + session);
             ProfileStore ps = new ProfileStore();
-            ps.setUUID(us.UpdateProfilePic(username));
-            session.setAttribute("ProfilePic", ps);
+            ps.setUUID(us.selectProfilePic(username));
+            session.setAttribute("profilepic", ps);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
 

@@ -126,6 +126,9 @@ public class Image extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        String UploadType = request.getParameter("check");
+        
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
 
@@ -149,21 +152,27 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username);
+                tm.insertPic(b, type, filename, username, UploadType);
 
                 is.close();
             }
-           
-//            User us = new User();
-//            us.setCluster(cluster);
-//            java.util.UUID picid = us.UpdateProfilePic(username);
-//            ps.setUUID(picid);
-//            
-//            request.setAttribute("ProfileStore", ps);
-//            session.setAttribute("ProfileStore", ps);
+           if(UploadType.equals("true")){
+            User us = new User();
+            us.setCluster(cluster);
+            java.util.UUID picid = null;
+                    
+            picid = us.selectProfilePic(username);
+            System.out.println(picid);
             
-            RequestDispatcher rd = request.getRequestDispatcher("/UpdateProfile.jsp");
+            
+            ps.setUUID(picid);
+            //changed from profile store to logged in
+            request.setAttribute("profilepic", ps);
+            session.setAttribute("profilepic", ps);
+           }
+            RequestDispatcher rd = request.getRequestDispatcher("UserProfile.jsp");
              rd.forward(request, response);
+             
         }
 
     }

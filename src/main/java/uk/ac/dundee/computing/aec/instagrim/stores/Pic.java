@@ -25,7 +25,7 @@ public class Pic {
     public void setUUID(java.util.UUID UUID){
         this.UUID =UUID;
     }
-    public String getSUUID(){
+    public String getUUID(){
         return UUID.toString();
     }
     public void setPic(ByteBuffer bImage, int length,String type) {

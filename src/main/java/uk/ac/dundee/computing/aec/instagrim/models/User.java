@@ -83,7 +83,7 @@ public class User {
         this.cluster = cluster;
     }
        
-       public java.util.UUID UpdateProfilePic(String username){
+       public java.util.UUID selectProfilePic(String username){
            
         java.util.UUID picid=null;
                 
@@ -189,4 +189,9 @@ public class User {
     return emailid;
 
        }   
+//        public boolean UpdateUser(String firstname, String lastname,String Password,String email){
+//            
+//            
+//    }
+ 
 }

@@ -11,33 +11,33 @@ package uk.ac.dundee.computing.aec.instagrim.stores;
  */
 public class ProfileStore {
     
-    private java.util.UUID UUID=null;
-    private String firstname;
-    private String lastname;
+    private java.util.UUID UUID;
+//    private String firstname;
+//    private String lastname;
     
     
     
     public void setUUID(java.util.UUID UUID){
-        this.UUID =UUID;
+        this.UUID = UUID;
     }
-    public java.util.UUID getSUUID(){
+    public java.util.UUID getUUID(){
         return UUID;
     }
-    
-    public void setUserFName(String firstname){
-        this.firstname=firstname;
-    }
-    
-    public String getUserFName(){
-        return firstname;
-    }
-    
-    public void setUserLName(String lastname){
-        this.lastname=lastname;
-    }
-    
-    public String getUserLName(){
-        return lastname;
-    }
-    
+//    
+//    public void setUserFName(String firstname){
+//        this.firstname=firstname;
+//    }
+//    
+//    public String getUserFName(){
+//        return firstname;
+//    }
+//    
+//    public void setUserLName(String lastname){
+//        this.lastname=lastname;
+//    }
+//    
+//    public String getUserLName(){
+//        return lastname;
+//    }
+//    
 }

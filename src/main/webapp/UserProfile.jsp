@@ -22,7 +22,7 @@
             <li><a href="/Instagrim/upload.jsp">Upload</a></li>
                 <%
                     LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                    ProfileStore ps = (ProfileStore) session.getAttribute("ProfilePic");
+                    ProfileStore ps = (ProfileStore) session.getAttribute("profilepic");
 
                     if (lg != null) {
                         String UserName = lg.getUsername();
@@ -60,7 +60,7 @@
                     <h4>Email:<%=lg.getUserEmail()%></h4>
                 </header>
                 <article>
-                    <a class="image featured" href="/Instagrim/Image/<%=ps.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=ps.getSUUID()%>"></a><br/>
+                    <a class="image featured" href="/Instagrim/Image/<%=ps.getUUID()%>" ><img src="/Instagrim/Thumb/<%=ps.getUUID()%>"></a><br/>
                 </article>
                 <footer>
                 </footer>

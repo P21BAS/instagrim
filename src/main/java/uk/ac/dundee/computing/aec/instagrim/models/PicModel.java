@@ -50,7 +50,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user) {
+    public void insertPic(byte[] b, String type, String name, String user, String UploadType) {
         try {
             Convertors convertor = new Convertors();
 
@@ -72,18 +72,28 @@ public class PicModel {
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
 
+            if(UploadType.equals("false")){
             PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
             PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
-            PreparedStatement psUpdateProfilePic = session.prepare("Update userprofiles set profilepic = ? where login = ?");
+            
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
             BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
-            BoundStatement bsUpdateProfilePic = new BoundStatement (psUpdateProfilePic);
-
+            
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));
-            session.execute(bsUpdateProfilePic.bind(picid, user));
+            
             session.close();
+            }else if(UploadType.equals("true")){
+                PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement psUpdateProfilePic = session.prepare("Update userprofiles set profilepic = ? where login = ?");
+                BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
+                BoundStatement bsUpdateProfilePic = new BoundStatement (psUpdateProfilePic);
+                 Date DateAdded = new Date();
+            session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
+                     session.execute(bsUpdateProfilePic.bind(picid, user));
+                     session.close();
+            }
 
         } catch (IOException ex) {
             System.out.println("Error --> " + ex);

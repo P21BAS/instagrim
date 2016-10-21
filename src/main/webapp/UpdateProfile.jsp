@@ -55,8 +55,20 @@
             <h3>Profile Pic Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
+                <input type="hidden" name="check" value="true"> 
                 <br/>
                 <input type="submit" value="Press"> to upload the file!
+            </form>
+                 <form method="POST"  action="UpdateProfile">
+                    <ul>
+                        <li>First Name <input type="text" name="firstname"></li>
+                        <li>Last Name <input type="text" name="lastname"></li>
+                        <li>Date Of Birth <input type="text" name="dateofbirth"></li>
+                        <li>Email <input type="email" name="email"></li>
+                        <li>User Name <input type="text" name="username"></li>
+                        <li>Password <input type="password" name="password"></li>
+                    </ul>
+                <input type="submit" value="UpdateProfile"> 
             </form>
         </article>
         <footer>
