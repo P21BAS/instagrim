@@ -55,6 +55,7 @@
                 <header>
                     <h1>GrimInsta ! </h1>
                     <h2>Your world in Black and White</h2>
+                      <li><a href="/Instagrim/UpdateProfile.jsp">Edit Profile</a></li>
                     <h3>Welcome <%=lg.getUserFName()%>  <%=lg.getUserLName()%></h3>
                     <h4>Email:<%=lg.getUserEmail()%></h4>
                 </header>

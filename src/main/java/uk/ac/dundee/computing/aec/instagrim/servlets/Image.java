@@ -162,7 +162,7 @@ public class Image extends HttpServlet {
 //            request.setAttribute("ProfileStore", ps);
 //            session.setAttribute("ProfileStore", ps);
             
-            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/UpdateProfile.jsp");
              rd.forward(request, response);
         }
 
