@@ -31,8 +31,15 @@ public class Register extends HttpServlet {
         cluster = CassandraHosts.getCluster();
     }
 
-
-
+@Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+            rd.forward(request, response);
+    
+    }
+ 
 
     /**
      * Handles the HTTP <code>POST</code> method.

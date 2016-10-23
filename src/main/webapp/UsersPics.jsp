@@ -12,22 +12,22 @@
          <nav id="nav">
         <ul class="container">
             <li><a href="/Instagrim">Home</a></li>
-            <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+            <li><a href="/Instagrim/Upload">Upload</a></li>
                 <%
                     LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                     if (lg != null) {
                         String UserName = lg.getUsername();
                         if (lg.getlogedin()) {
                 %>
-            <li><a href="/Instagrim/UserProfile.jsp">User Profile</a></li>
+            <li><a href="/Instagrim/Profile">User Profile</a></li>
             <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
             <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
             <li><a href="/Instagrim/Logout">Logout</a></li>
                 <% }
                 } else {
                 %>
-            <li><a href="/Instagrim/register.jsp">Register</a></li>
-            <li><a href="/Instagrim/login.jsp">Login</a></li>
+            <li><a href="/Instagrim/Register">Register</a></li>
+            <li><a href="/Instagrim/Login">Login</a></li>
             <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
                 <%}%>
         </ul>
@@ -62,7 +62,7 @@
                             Pic p = (Pic) iterator.next();
 
                     %>
-                    <a class="image featured" href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
+                    <a class="image featured" href="/Instagrim/Image/<%=p.getUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getUUID()%>"></a><br/><%
 
                             }
                         }

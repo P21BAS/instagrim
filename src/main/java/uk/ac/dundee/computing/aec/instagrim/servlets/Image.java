@@ -69,8 +69,10 @@ public class Image extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      * response)
      */
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
+            
         String args[] = Convertors.SplitRequestPath(request);
         int command;
         try {
@@ -140,7 +142,8 @@ public class Image extends HttpServlet {
             int i = is.available();
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
-            ProfileStore ps = (ProfileStore)session.getAttribute("ProfileStore");
+            
+            ProfileStore ps = (ProfileStore)session.getAttribute("profilepic");
             
             String username="majed";
             if (lg.getlogedin()){
@@ -164,11 +167,14 @@ public class Image extends HttpServlet {
             picid = us.selectProfilePic(username);
             System.out.println(picid);
             
+            if(picid != null)
+            {
+                ps.setUUID(picid);
+                //changed from profile store to logged in
+                request.setAttribute("profilepic", ps);
+                session.setAttribute("profilepic", ps);
+            }
             
-            ps.setUUID(picid);
-            //changed from profile store to logged in
-            request.setAttribute("profilepic", ps);
-            session.setAttribute("profilepic", ps);
            }
             RequestDispatcher rd = request.getRequestDispatcher("UserProfile.jsp");
              rd.forward(request, response);

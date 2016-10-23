@@ -79,7 +79,8 @@ public class User {
     
     return false;  
     }
-       public void setCluster(Cluster cluster) {
+    
+    public void setCluster(Cluster cluster) {
         this.cluster = cluster;
     }
        
