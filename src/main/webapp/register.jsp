@@ -18,7 +18,7 @@
             <li><a href="/Instagrim/Upload">Upload</a></li>
             <li><a href="/Instagrim/Register">Register</a></li>
             <li><a href="/Instagrim/Login">Login</a></li>
-            <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+            <li><a href="/Instagrim/Images/SAMPLE">Sample Images</a></li>
         </nav>
         <div class="wrapper style1 first">
             <article class="container" id="top">

@@ -19,7 +19,7 @@
                         if (lg.getlogedin()) {
                 %>
             <li><a href="/Instagrim/Profile">User Profile</a></li>
-            <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+            <li><a href="/Instagrim/Images/SAMPLE">Sample Images</a></li>
             <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
             <li><a href="/Instagrim/Logout" >Logout</a></li>
                 <% }
@@ -27,7 +27,7 @@
                 %>
             <li><a href="/Instagrim/Register">Register</a></li>
             <li><a href="/Instagrim/Login">Login</a></li>
-            <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+            <li><a href="/Instagrim/Images/SAMPLE">Sample Images</a></li>
                 <%}%>
         </ul>
     </nav>
