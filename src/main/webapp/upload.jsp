@@ -14,7 +14,7 @@
          <nav id="nav">
         <ul class="container">
             <li><a href="/Instagrim">Home</a></li>
-            <li><a href="/Instagrim/Upload/">Upload</a></li>
+            <li><a href="/Instagrim/Upload">Upload</a></li>
                 <%
                     LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                     if (lg != null) {
@@ -51,8 +51,14 @@
                 File to upload: <input type="file" name="upfile">
                   <input type="hidden" name="check" value="false"> 
                 <br/>
+                  <input type="radio" name="filter" value="grey"> Grey Filter<br>
+                  <input type="radio" name="filter" value="dark"> Dark Filter<br>
+                  <input type="radio" name="filter" value="green"> Green Filter<br>
+                  <input type="radio" name="filter" value="none"> No Filter<br>
                 <br/>
                 <input type="submit" value="Press"> to upload the file!
+             
+  
             </form>
         </article>
         <footer>

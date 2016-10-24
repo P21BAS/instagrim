@@ -27,6 +27,7 @@ import uk.ac.dundee.computing.aec.instagrim.lib.Convertors;
 import uk.ac.dundee.computing.aec.instagrim.models.*;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 import uk.ac.dundee.computing.aec.instagrim.stores.*;
+import uk.ac.dundee.computing.aec.instagrim.filters.*;
 
 /**
  * Servlet implementation class Image
@@ -45,6 +46,7 @@ public class Image extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private Cluster cluster;
     private HashMap CommandsMap = new HashMap();
+
     
     
 
@@ -130,12 +132,14 @@ public class Image extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         String UploadType = request.getParameter("check");
+        String filter = request.getParameter("filter");
         
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
 
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
+            
             
             
             InputStream is = request.getPart(part.getName()).getInputStream();
@@ -155,7 +159,12 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username, UploadType);
+                if(filter==null){
+                RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
+                rd.forward(request, response);
+                }else{
+                tm.insertPic(b, type, filename, username, UploadType, filter);
+                }
 
                 is.close();
             }

@@ -12,6 +12,7 @@ package uk.ac.dundee.computing.aec.instagrim.models;
  * To manually generate a UUID use:
  * http://www.famkruithof.net/uuid/uuidgen
  */
+
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.PreparedStatement;
@@ -36,11 +37,13 @@ import org.imgscalr.Scalr.Method;
 
 import uk.ac.dundee.computing.aec.instagrim.lib.*;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
+import uk.ac.dundee.computing.aec.instagrim.filters.*;
 //import uk.ac.dundee.computing.aec.stores.TweetStore;
 
 public class PicModel {
 
     Cluster cluster;
+   //public String filters;
 
     public void PicModel() {
 
@@ -50,7 +53,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user, String UploadType) {
+    public void insertPic(byte[] b, String type, String name, String user, String UploadType, String filter) {
         try {
             Convertors convertor = new Convertors();
 
@@ -64,10 +67,10 @@ public class PicModel {
             FileOutputStream output = new FileOutputStream(new File("/var/tmp/instagrim/" + picid));
 
             output.write(b);
-            byte []  thumbb = picresize(picid.toString(),types[1]);
+            byte []  thumbb = picresize(picid.toString(),types[1], filter);
             int thumblength= thumbb.length;
             ByteBuffer thumbbuf=ByteBuffer.wrap(thumbb);
-            byte[] processedb = picdecolour(picid.toString(),types[1]);
+            byte[] processedb = picdecolour(picid.toString(),types[1], filter);
             ByteBuffer processedbuf=ByteBuffer.wrap(processedb);
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
@@ -100,10 +103,10 @@ public class PicModel {
         }
     }
 
-    public byte[] picresize(String picid,String type) {
+    public byte[] picresize(String picid,String type, String filter) {
         try {
             BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));
-            BufferedImage thumbnail = createThumbnail(BI);
+            BufferedImage thumbnail = createThumbnail(BI, filter);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(thumbnail, type, baos);
             baos.flush();
@@ -117,10 +120,10 @@ public class PicModel {
         return null;
     }
     
-    public byte[] picdecolour(String picid,String type) {
+    public byte[] picdecolour(String picid,String type, String filter) {
         try {
             BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));
-            BufferedImage processed = createProcessed(BI);
+            BufferedImage processed = createProcessed(BI, filter);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(processed, type, baos);
             baos.flush();
@@ -133,15 +136,31 @@ public class PicModel {
         return null;
     }
 
-    public static BufferedImage createThumbnail(BufferedImage img) {
+    public static BufferedImage createThumbnail(BufferedImage img, String filter) {
+         if(filter.equals("grey")){
         img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_GRAYSCALE);
+         }else if(filter.equals("dark")){
+         img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_DARKER,OP_DARKER, OP_DARKER, OP_DARKER);
+         }else  if(filter.equals("BRIGHT")){
+          img = resize(img, Method.SPEED, 250, OP_ANTIALIAS, OP_BRIGHTER, OP_BRIGHTER,OP_BRIGHTER,OP_BRIGHTER);
+         }else if(filter.equals("")){
+           img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);
+         }
         // Let's add a little border before we return result.
         return pad(img, 2);
     }
     
-   public static BufferedImage createProcessed(BufferedImage img) {
+   public static BufferedImage createProcessed(BufferedImage img, String filter) {
         int Width=img.getWidth()-1;
+        if(filter.equals("grey")){
         img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_GRAYSCALE);
+        }else if(filter.equals("dark")){
+         img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_DARKER, OP_DARKER, OP_DARKER, OP_DARKER);
+        }else if(filter.equals("bright")){
+          img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_BRIGHTER,OP_BRIGHTER,OP_BRIGHTER,OP_BRIGHTER);
+        }else if(filter.equals("none")){
+           img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_GRAYSCALE);
+        }
         return pad(img, 4);
     }
    
