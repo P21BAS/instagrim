@@ -63,4 +63,11 @@ public class LoggedIn {
     public String getUserEmail(){
         return email;
     }
+    
+    public void update(String firstname, String lastname, String email){
+        setUserFName(firstname);
+        setUserLName(lastname);
+        setUserEmail(email);
+        
+    }
 }

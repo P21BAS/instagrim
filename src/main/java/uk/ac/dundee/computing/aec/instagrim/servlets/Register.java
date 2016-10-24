@@ -34,6 +34,8 @@ public class Register extends HttpServlet {
 @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("userExists", false);
+        request.setAttribute("passwordValid", false);
         
         RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
             rd.forward(request, response);
@@ -58,14 +60,31 @@ public class Register extends HttpServlet {
         String password=request.getParameter("password");
         String email=request.getParameter("email");
         String dateofbirth=request.getParameter("dateofbirth");
-    
+
         
         User us=new User();
         us.setCluster(cluster);
-        us.RegisterUser(firstname, lastname, username, password,dateofbirth,email);
-//        out.print(firstname, lastname, username, password, email, dateofbirth,email);
-	response.sendRedirect("/Instagrim");
         
+        if(us.checkforexistinguser(username) == true){
+            request.setAttribute("userExists", true);
+            RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
+            rd.forward(request, response);
+        }else if(us.checkforexistinguser(username) == false){
+           
+        
+        
+        
+        if(us.RegisterUser(firstname, lastname, username, password,dateofbirth,email) == false){
+        request.setAttribute("passwordValid", true);
+//        out.print(firstname, lastname, username, password, email, dateofbirth,email);
+	RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
+            rd.forward(request, response);
+        }else{
+            request.setAttribute("passwordValid", false);
+            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+            rd.forward(request, response);
+        }
+        }
     }
 
     /**

@@ -30,6 +30,10 @@ public class User {
     public boolean RegisterUser(String firstname, String lastname, String username, String Password,String dateofbirth, String email){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;
+       if(Password.length() < 8 ){
+            System.out.println("Please enter a password with at least 8 characters");
+            return false;
+      }else{
         try {
             EncodedPassword= sha1handler.SHA1(Password);
         }catch (UnsupportedEncodingException | NoSuchAlgorithmException et){
@@ -44,10 +48,10 @@ public class User {
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         username,EncodedPassword,firstname, lastname, dateofbirth, email));
         //We are assuming this always works.  Also a transaction would be good here !
-        
         return true;
+       }
+   
     }
-    
     public boolean IsValidUser(String firstname, String lastname, String username, String Password,String dateofbirth, String email){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;
@@ -190,9 +194,41 @@ public class User {
     return emailid;
 
        }   
-//        public boolean UpdateUser(String firstname, String lastname,String Password,String email){
-//            
-//            
-//    }
+       
+       
+     public void UpdateUser(String username, String first_name, String last_name,String email, String password){
+         Session session = cluster.connect("instagrim");
+         PreparedStatement ps = session.prepare("Update userprofiles SET first_name =?, last_name =?, email =? where login =?");
+         
+         BoundStatement boundStatement = new BoundStatement(ps);
+         session.execute(
+         boundStatement.bind(
+         first_name, last_name, email, username));
+   }
  
+      public boolean checkforexistinguser(String username){
+           
+        
+                
+             Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select login from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("user does not already exist");
+            return false;
+        } else {
+            for (Row row : rs) {
+                if(username == row.getString("login"))
+               return true;
+            }
+          
+       }
+
+    return false;
+       }
+       
 }

@@ -15,8 +15,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
-
+import uk.ac.dundee.computing.aec.instagrim.models.User;
+import uk.ac.dundee.computing.aec.instagrim.stores.*;
 /**
  *
  * @author Brian
@@ -34,6 +36,8 @@ public class UpdateProfile extends HttpServlet {
        @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
         
         RequestDispatcher rd = request.getRequestDispatcher("UpdateProfile.jsp");
             rd.forward(request, response);
@@ -78,7 +82,50 @@ public class UpdateProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        
+        String first_name=request.getParameter("firstname");
+        String last_name=request.getParameter("lastname"); 
+        
+        String password=request.getParameter("password");
+        String email=request.getParameter("email");
+        String dateofbirth=request.getParameter("dateofbirth");
+        
+        User us=new User();
+        us.setCluster(cluster);
+        LoggedIn lg =(LoggedIn)session.getAttribute("LoggedIn");
+        ProfileStore ps = (ProfileStore) session.getAttribute("profilepic");
+        String username = lg.getUsername();
+        
+        
+        java.util.UUID picid = us.selectProfilePic(username);
+                
+//                if(first_name.isEmpty()){
+//                    first_name=lg.getUserFName();
+//                }
+//                
+//                 if(last_name.isEmpty()){
+//                    last_name=lg.getUserLName();
+//                }
+//                 
+//                  if(email.isEmpty()){
+//                    email=lg.getUserEmail();
+//                }
+//                  
+                  us.UpdateUser(username, first_name, last_name, email, password);
+                  
+                  
+                  lg.update(first_name, last_name, email);
+                  ps.setUUID(picid);
+                  
+                  request.setAttribute("LoggedIn", lg);
+                  session.setAttribute("LoggedIn", lg);
+                  session.setAttribute("profilepic", ps);
+     
+
+        RequestDispatcher rd = request.getRequestDispatcher("UserProfile.jsp");
+            rd.forward(request, response);
+                  
     }
 
     /**
